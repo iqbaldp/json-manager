@@ -19,6 +19,14 @@ import {
 
 const geistMono = GeistMono;
 
+type JsonValue = 
+  | string
+  | number
+  | boolean
+  | null
+  | JsonValue[]
+  | { [key: string]: JsonValue };
+
 interface SavedJson {
   filename: string;
   timestamp: string;
@@ -26,7 +34,7 @@ interface SavedJson {
 
 export default function Home() {
   const [jsonInput, setJsonInput] = useState("");
-  const [parsedJson, setParsedJson] = useState<any>(null);
+  const [parsedJson, setParsedJson] = useState<JsonValue | undefined>(undefined);
   const [isValidJson, setIsValidJson] = useState(true);
   const [copyFeedback, setCopyFeedback] = useState(false);
   const [saveFeedback, setSaveFeedback] = useState(false);
@@ -46,6 +54,7 @@ export default function Home() {
       setParsedJson(parsed);
       setIsValidJson(true);
     } catch (error) {
+      console.error('Error parsing JSON:', error);
       setIsValidJson(false);
       setParsedJson(null);
     }
@@ -81,7 +90,6 @@ const saveToFile = async (customName?: string) => {
 
       setSaveFeedback(true);
       setTimeout(() => setSaveFeedback(false), 2000);
-      // Refresh the list of saved files when a new file is saved
       fetchSavedFiles();
     } catch (error) {
       console.error('Error saving JSON:', error);
