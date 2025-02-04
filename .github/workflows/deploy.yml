@@ -26,7 +26,7 @@ jobs:
       - name: Build application
         run: pnpm run build
         
-      - name: Deploy to VPS
+      - name: Deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
