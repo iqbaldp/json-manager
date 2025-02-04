@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Copy } from "lucide-react";
-import "@andypf/json-viewer";
 import { GeistMono } from "geist/font/mono";
 import {
   Dialog,
@@ -136,15 +135,16 @@ export default function Home() {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-gray-900">
-      <header className="relative border-b border-gray-200/50 p-4 pb-6 backdrop-blur-sm bg-white/30">
+      <header className="relative border-b border-gray-200/50 p-2 backdrop-blur-sm bg-white/30">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 animate-gradient-x"></div>
-        <div className="relative z-10">
-          <br />
-          <h1 className="text-3xl font-bold text-gray-900">JSON Manager</h1>
-          <p className="text-gray-600 mt-2">
-            Store, format and visualize your JSON
-          </p>
-          <div className="flex items-center gap-3 mt-4">
+        <div className="relative z-10 flex justify-between items-center pt-2 pl-5 pr-5">
+          <div className="flex items-center gap-6">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">JSON Manager</h1>
+              <p className="text-sm text-gray-600">Store, format and visualize your JSON</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
             <Dialog open={isSaveDialogOpen} onOpenChange={setIsSaveDialogOpen}>
               <DialogTrigger asChild>
                 <Button
@@ -417,7 +417,7 @@ export default function Home() {
 
       <main className="flex-1 p-6 max-w-[1800px] mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <Card className="bg-white border-gray-200 shadow-lg rounded-lg h-[calc(100vh-16rem)] flex flex-col overflow-hidden">
+          <Card className="bg-white border-gray-200 shadow-lg rounded-lg h-[calc(100vh-7rem)] flex flex-col overflow-hidden">
             <CardHeader className="flex flex-row items-center justify-between border-b border-gray-200 bg-white">
               <CardTitle className="text-xl font-semibold text-gray-900">
                 JSON Editor
@@ -440,7 +440,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <div className="h-[calc(100vh-16rem)]">
+          <div className="h-[calc(100vh-7rem)]">
             <div className="bg-white rounded-lg overflow-hidden border border-gray-200 shadow-lg h-full flex flex-col">
               <div className="flex flex-col flex-shrink-0">
                 <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 border-b border-gray-200">
@@ -475,34 +475,26 @@ export default function Home() {
               </div>
               <div>
                 <div
-                  className={`${geistMono.className} h-[calc(100vh-20rem)] bg-white rounded-lg overflow-auto text-base leading-relaxed shadow-inner border border-gray-200 relative`}
+                  className={`${geistMono.className} h-[calc(100vh-10rem)] bg-white overflow-auto text-base leading-relaxed relative`}
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-12 border-r border-gray-200 flex flex-col items-center py-6 bg-gray-50">
-                    {parsedJson &&
-                      Array.from({
-                        length: JSON.stringify(parsedJson, null, 2).split("\n")
-                          .length,
-                      }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="text-gray-600 text-xs w-full text-center py-[2.5px]"
-                        >
-                          {i + 1}
-                        </div>
-                      ))}
-                  </div>
-                  <div className="pl-12 p-2 text-base">
+                  
+                  <div className="pl-2 text-base">
                     {parsedJson ? (
-                      <andypf-json-viewer
-                        indent="2"
-                        expanded="true"
-                        theme="default-light"
-                        show-toolbar="true"
-                        expand-icon-type="square"
-                        show-copy="false"
-                        show-size="false"
-                        data={parsedJson}
-                      />
+                      <div id="json-viewer-container">
+                        {typeof window !== 'undefined' && (
+                          // @ts-expect-error - andypf-json-viewer is a web component
+                          <andypf-json-viewer
+                            indent="2"
+                            expanded="true"
+                            theme="cupertino"
+                            show-toolbar="true"
+                            expand-icon-type="square"
+                            show-copy="false"
+                            show-size="false"
+                            data={parsedJson}
+                          />
+                        )}
+                      </div>
                     ) : (
                       <p className="text-purple-400/50 text-center py-8">
                         Formatted JSON will appear here...

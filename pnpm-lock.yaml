@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@andypf/json-viewer':
-        specifier: ^2.1.7
-        version: 2.1.7
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.0.8)(react@19.0.0)
@@ -87,9 +84,6 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
-
-  '@andypf/json-viewer@2.1.7':
-    resolution: {integrity: sha512-lzlDkpKBq78P1mQ7kWoGsTbfFmtCLzJN/lQLgHFfPsn7fSqZrQ/mYU1rS6zHZKOHEwN/A6xW4B6GOggWHB3xOQ==}
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -2263,8 +2257,6 @@ packages:
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
-
-  '@andypf/json-viewer@2.1.7': {}
 
   '@babel/code-frame@7.26.2':
     dependencies:
