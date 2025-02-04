@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import Script from "next/script";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -28,7 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="https://pfau-software.de/json-viewer/dist/iife/index.js" />
+        <Script
+          src="https://pfau-software.de/json-viewer/dist/iife/index.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen`}
