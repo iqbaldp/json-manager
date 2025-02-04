@@ -2,6 +2,8 @@
 
 JSON editor and formatter for daily use
 
+🌐 [Live Demo](https://json.iqbaldp.dev)
+
 ![JSON Manager Demo](docs/demo.png)
 
 ## Features
