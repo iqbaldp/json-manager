@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script src="https://pfau-software.de/json-viewer/dist/iife/index.js" />
+      </head>
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen`}
       >
