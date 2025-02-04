@@ -15,11 +15,16 @@ jobs:
         with:
           node-version: '20'
           
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
         
       - name: Build application
-        run: npm run build
+        run: pnpm run build
         
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -30,6 +35,6 @@ jobs:
           script: |
             cd /var/www/json.iqbaldp.dev
             git pull origin main
-            npm install
-            npm run build
-            pm2 restart json-manager || pm2 start npm --name "json-manager" -- start
+            pnpm install
+            pnpm run build
+            pm2 restart json-manager || pm2 start pnpm --name "json-manager" -- start
